@@ -1,4 +1,5 @@
 ﻿#region copyright
+
 // Copyright (c) 2021, 2022, 2023 Mark A. Olbert 
 // https://www.JumpForJoySoftware.com
 // RelativeEdgePosition.cs
@@ -17,6 +18,7 @@
 // 
 // You should have received a copy of the GNU General Public License along 
 // with VisualUtilities. If not, see <https://www.gnu.org/licenses/>.
+
 #endregion
 
 using System.Linq;
@@ -28,7 +30,7 @@ public record RelativeEdgePosition
 {
     public static RelativeEdgePosition Create( Rectangle2D rect, Vector3 point )
     {
-        var retVal = new RelativeEdgePosition() { BaseRectangle = rect, Point = point };
+        var retVal = new RelativeEdgePosition { BaseRectangle = rect, Point = point };
 
         if( rect.Contains( point ) != RelativePosition.Outside )
             return retVal;

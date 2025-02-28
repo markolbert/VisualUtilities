@@ -1,4 +1,5 @@
 ﻿#region copyright
+
 // Copyright (c) 2021, 2022, 2023 Mark A. Olbert 
 // https://www.JumpForJoySoftware.com
 // GeometricConstants.cs
@@ -17,6 +18,7 @@
 // 
 // You should have received a copy of the GNU General Public License along 
 // with VisualUtilities. If not, see <https://www.gnu.org/licenses/>.
+
 #endregion
 
 using System;
@@ -25,9 +27,9 @@ namespace J4JSoftware.VisualUtilities;
 
 public static class GeometricConstants
 {
-    public const float TwoPi = (float)Math.PI * 2;
-    public const float HalfPi = (float)Math.PI / 2;
-    public const float QuarterPi = (float)Math.PI / 4;
-    public const float RadiansPerDegree = (float)Math.PI / 180;
-    public const float DegreesPerRadian = (float)(180 / Math.PI);
+    public const float TwoPi = (float) Math.PI * 2;
+    public const float HalfPi = (float) Math.PI / 2;
+    public const float QuarterPi = (float) Math.PI / 4;
+    public const float RadiansPerDegree = (float) Math.PI / 180;
+    public const float DegreesPerRadian = (float) ( 180 / Math.PI );
 }

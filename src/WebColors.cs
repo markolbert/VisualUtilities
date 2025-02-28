@@ -1,4 +1,5 @@
 ﻿#region copyright
+
 // Copyright (c) 2021, 2022, 2023 Mark A. Olbert 
 // https://www.JumpForJoySoftware.com
 // WebColors.cs
@@ -17,6 +18,7 @@
 // 
 // You should have received a copy of the GNU General Public License along 
 // with VisualUtilities. If not, see <https://www.gnu.org/licenses/>.
+
 #endregion
 
 using System;
@@ -38,10 +40,8 @@ public static class WebColors
         return BitConverter.ToInt32( bytes );
     }
 
-    public static string ToAbgrHex( this Color color, byte transparency = 0xFF )
-    {
-        return color.ToAbgr( transparency ).ToString( "x" );
-    }
+    public static string ToAbgrHex( this Color color, byte transparency = 0xFF ) =>
+        color.ToAbgr( transparency ).ToString( "x" );
 
     public static int HexTextToAbgr( string text )
     {

@@ -1,7 +1,8 @@
 ﻿#region copyright
+
 // Copyright (c) 2021, 2022, 2023 Mark A. Olbert 
 // https://www.JumpForJoySoftware.com
-// CoordinateSystem2D.cs
+// RelativePosition.cs
 //
 // This file is part of JumpForJoy Software's VisualUtilities.
 // 
@@ -17,12 +18,14 @@
 // 
 // You should have received a copy of the GNU General Public License along 
 // with VisualUtilities. If not, see <https://www.gnu.org/licenses/>.
+
 #endregion
 
 namespace J4JSoftware.VisualUtilities;
 
-public enum CoordinateSystem2D
+public enum RelativePosition
 {
-    Cartesian,
-    Display
+    Inside,
+    Edge,
+    Outside
 }

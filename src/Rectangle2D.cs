@@ -1,4 +1,5 @@
 ﻿#region copyright
+
 // Copyright (c) 2021, 2022, 2023 Mark A. Olbert 
 // https://www.JumpForJoySoftware.com
 // Rectangle2D.cs
@@ -17,6 +18,7 @@
 // 
 // You should have received a copy of the GNU General Public License along 
 // with VisualUtilities. If not, see <https://www.gnu.org/licenses/>.
+
 #endregion
 
 using System;
@@ -44,7 +46,7 @@ public record Rectangle2D : IEnumerable<Vector3>
             if( Math.Abs( this[ idx ].X - other[ idx ].X ) > ComparisonTolerance )
                 return false;
 
-            if (Math.Abs(this[idx].Y - other[idx].Y) > ComparisonTolerance)
+            if( Math.Abs( this[ idx ].Y - other[ idx ].Y ) > ComparisonTolerance )
                 return false;
         }
 
@@ -78,8 +80,8 @@ public record Rectangle2D : IEnumerable<Vector3>
         UpperRight = new Vector3( maxX, minY, 0 );
         LowerRight = new Vector3( maxX, maxY, 0 );
 
-        Height = Vector3.Distance(LowerLeft, UpperLeft);
-        Width = Vector3.Distance(UpperLeft, UpperRight);
+        Height = Vector3.Distance( LowerLeft, UpperLeft );
+        Width = Vector3.Distance( UpperLeft, UpperRight );
 
         Center = new Vector3( ( minX + maxX ) / 2, ( minY + maxY ) / 2, 0 );
         BoundingBox = this;
@@ -94,13 +96,13 @@ public record Rectangle2D : IEnumerable<Vector3>
         CoordinateSystem2D coordinateSystem = CoordinateSystem2D.Cartesian,
         float comparisonTolerance = DefaultComparisonTolerance
     )
-        : this(CreateCorners(height, width, rotation, center), coordinateSystem, comparisonTolerance)
+        : this( CreateCorners( height, width, rotation, center ), coordinateSystem, comparisonTolerance )
     {
     }
 
     public Rectangle2D Copy()
     {
-        var retVal = (Rectangle2D) this.MemberwiseClone();
+        var retVal = (Rectangle2D) MemberwiseClone();
         retVal.BoundingBox = (Rectangle2D) retVal.BoundingBox.MemberwiseClone();
 
         return retVal;
@@ -138,11 +140,11 @@ public record Rectangle2D : IEnumerable<Vector3>
                 $"Unsupported {nameof( CoordinateSystem )} value '{CoordinateSystem}'" )
         };
 
-        if ( maxX < minX )
+        if( maxX < minX )
             ( minX, maxX ) = ( maxX, minX );
 
-        if (maxY < minY)
-            (minY, maxY) = (maxY, minY);
+        if( maxY < minY )
+            ( minY, maxY ) = ( maxY, minY );
 
         BoundingBox = new Rectangle2D( minX, maxX, minY, maxY, CoordinateSystem );
 
@@ -168,12 +170,12 @@ public record Rectangle2D : IEnumerable<Vector3>
 
         LowerRight = pointList[ 0 ];
 
-        (LowerRight, UpperRight) = CoordinateSystem switch
+        ( LowerRight, UpperRight ) = CoordinateSystem switch
         {
-            CoordinateSystem2D.Cartesian => (LowerRight, UpperRight),
-            CoordinateSystem2D.Display => (UpperRight, LowerRight),
+            CoordinateSystem2D.Cartesian => ( LowerRight, UpperRight ),
+            CoordinateSystem2D.Display => ( UpperRight, LowerRight ),
             _ => throw new InvalidEnumArgumentException(
-                $"Unsupported {nameof(CoordinateSystem)} value '{CoordinateSystem}'")
+                $"Unsupported {nameof( CoordinateSystem )} value '{CoordinateSystem}'" )
         };
 
         Height = Vector3.Distance( LowerLeft, UpperLeft );
@@ -184,7 +186,7 @@ public record Rectangle2D : IEnumerable<Vector3>
                               ( corners.Max( c => c.Y ) + corners.Min( c => c.Y ) ) / 2,
                               0 );
 
-        var scaleTransform = Matrix4x4.CreateScale(Width, Height, 1 );
+        var scaleTransform = Matrix4x4.CreateScale( Width, Height, 1 );
         var translationTransform = Matrix4x4.CreateTranslation( LowerLeft.X, LowerRight.Y, 0 );
         var unitTransform = scaleTransform * translationTransform;
 
@@ -194,9 +196,9 @@ public record Rectangle2D : IEnumerable<Vector3>
         throw new InvalidOperationException( "Could not create inverse unit transform" );
     }
 
-    private static Vector3[] CreateCorners(float height, float width, float rotation, Vector3? center)
+    private static Vector3[] CreateCorners( float height, float width, float rotation, Vector3? center )
     {
-        center ??= new Vector3(width / 2F, height / 2F, 0);
+        center ??= new Vector3( width / 2F, height / 2F, 0 );
 
         var retVal = new Vector3[]
         {
@@ -207,12 +209,16 @@ public record Rectangle2D : IEnumerable<Vector3>
         };
 
         retVal = retVal.ApplyTransform(
-            Matrix4x4.CreateRotationZ(rotation * GeometricConstants.RadiansPerDegree, center.Value));
+            Matrix4x4.CreateRotationZ( rotation * GeometricConstants.RadiansPerDegree, center.Value ) );
 
         return retVal;
     }
 
-    private static Vector3 GetCornerPoint( Func<Vector3, bool> comparer, Func<Vector3, bool> filter, ref List<Vector3> points )
+    private static Vector3 GetCornerPoint(
+        Func<Vector3, bool> comparer,
+        Func<Vector3, bool> filter,
+        ref List<Vector3> points
+    )
     {
         var leftmost = points.Where( comparer )
                              .ToList();
@@ -247,7 +253,7 @@ public record Rectangle2D : IEnumerable<Vector3>
             1 => UpperLeft,
             2 => UpperRight,
             3 => LowerRight,
-            _ => throw new IndexOutOfRangeException("Index must be >=0 and <= 3")
+            _ => throw new IndexOutOfRangeException( "Index must be >=0 and <= 3" )
         };
 
     // thanx to Nick Alger for this!
@@ -292,8 +298,8 @@ public record Rectangle2D : IEnumerable<Vector3>
             if( OnEdge( transformed.X, 0 ) || OnEdge( transformed.X, 1 ) )
                 return RelativePosition.Edge;
 
-            return InRange( transformed.X, 0, 1 ) 
-                ? RelativePosition.Inside 
+            return InRange( transformed.X, 0, 1 )
+                ? RelativePosition.Inside
                 : RelativePosition.Outside;
         }
 
@@ -303,35 +309,35 @@ public record Rectangle2D : IEnumerable<Vector3>
     public ShrinkResult ShrinkToFit( Rectangle2D toShrink, ShrinkStyle shrinkStyle = ShrinkStyle.PreserveAspectRatio )
     {
         if( Contains( toShrink ) != RelativePosition.Outside || shrinkStyle == ShrinkStyle.None )
-            return new ShrinkResult(null, toShrink);
+            return new ShrinkResult( null, toShrink );
 
         var externalCorners = GetExternalCorners( toShrink ).ToList();
 
         // should never happen...
-        if (!externalCorners.Any())
-            return new ShrinkResult(null, toShrink);
+        if( !externalCorners.Any() )
+            return new ShrinkResult( null, toShrink );
 
         var xZoom = 1f;
         var yZoom = 1f;
 
-        foreach (var corner in externalCorners)
+        foreach( var corner in externalCorners )
         {
-            var slope = (Center.Y - corner.Point.Y) / (corner.Point.X - Center.X);
+            var slope = ( Center.Y - corner.Point.Y ) / ( corner.Point.X - Center.X );
 
-            foreach (var edge in Enum.GetValues<NearestEdge>().Where(x => corner.NearestEdge.HasFlag(x)))
+            foreach( var edge in Enum.GetValues<NearestEdge>().Where( x => corner.NearestEdge.HasFlag( x ) ) )
             {
                 var xCenterToCorner = corner.Point.X - toShrink.Center.X;
                 var yCenterToCorner = corner.Point.Y - toShrink.Center.Y;
                 var distCenterToCorner =
-                    Math.Sqrt(xCenterToCorner * xCenterToCorner + yCenterToCorner * yCenterToCorner);
+                    Math.Sqrt( xCenterToCorner * xCenterToCorner + yCenterToCorner * yCenterToCorner );
 
                 var xCenterToIntersection = 0f;
                 var yCenterToIntersection = 0f;
 
-                switch (edge)
+                switch( edge )
                 {
                     case NearestEdge.Bottom:
-                        xCenterToIntersection = (Height - Center.Y) / slope;
+                        xCenterToIntersection = ( Height - Center.Y ) / slope;
                         yCenterToIntersection = Height - Center.Y;
                         break;
 
@@ -347,27 +353,27 @@ public record Rectangle2D : IEnumerable<Vector3>
 
                     case NearestEdge.Right:
                         xCenterToIntersection = Width - Center.X;
-                        yCenterToIntersection = (Width - Center.X) * slope;
+                        yCenterToIntersection = ( Width - Center.X ) * slope;
                         break;
                 }
 
                 var distCenterToIntersection =
-                    Math.Sqrt(xCenterToIntersection * xCenterToIntersection
-                             + yCenterToIntersection * yCenterToIntersection);
+                    Math.Sqrt( xCenterToIntersection * xCenterToIntersection
+                             + yCenterToIntersection * yCenterToIntersection );
 
-                var zoom = (float)(distCenterToIntersection / distCenterToCorner);
+                var zoom = (float) ( distCenterToIntersection / distCenterToCorner );
 
-                switch (edge)
+                switch( edge )
                 {
                     case NearestEdge.Bottom:
                     case NearestEdge.Top:
-                        if (zoom < yZoom)
+                        if( zoom < yZoom )
                             yZoom = zoom;
                         break;
 
                     case NearestEdge.Left:
                     case NearestEdge.Right:
-                        if (zoom < xZoom)
+                        if( zoom < xZoom )
                             xZoom = zoom;
 
                         break;

@@ -1,4 +1,5 @@
 ﻿#region copyright
+
 // Copyright (c) 2021, 2022, 2023 Mark A. Olbert 
 // https://www.JumpForJoySoftware.com
 // GeometricExtensions.cs
@@ -17,6 +18,7 @@
 // 
 // You should have received a copy of the GNU General Public License along 
 // with VisualUtilities. If not, see <https://www.gnu.org/licenses/>.
+
 #endregion
 
 using System.Linq;
@@ -26,13 +28,13 @@ namespace J4JSoftware.VisualUtilities;
 
 public static class GeometricExtensions
 {
-    public static Vector3[] ApplyTransform(this Vector3[] points, Matrix4x4 transform)
+    public static Vector3[] ApplyTransform( this Vector3[] points, Matrix4x4 transform )
     {
-        var retVal = new Vector3[points.Length];
+        var retVal = new Vector3[ points.Length ];
 
-        for (var idx = 0; idx < points.Length; idx++)
+        for( var idx = 0; idx < points.Length; idx++ )
         {
-            retVal[idx] = Vector3.Transform(points[idx], transform);
+            retVal[ idx ] = Vector3.Transform( points[ idx ], transform );
         }
 
         return retVal;
@@ -60,8 +62,8 @@ public static class GeometricExtensions
         var translateTransform = Matrix4x4.CreateTranslation( viewport.X / 2,
                                                               -viewport.Y / 2,
                                                               0 );
-        
-        var mirrorYTransform = Matrix4x4.CreateScale(1, -1, 1);
+
+        var mirrorYTransform = Matrix4x4.CreateScale( 1, -1, 1 );
 
         var combinedTransform = translateTransform * mirrorYTransform;
 
@@ -75,13 +77,12 @@ public static class GeometricExtensions
         Vector3 viewport
     )
     {
-        var translateTransform = Matrix4x4.CreateTranslation(
-            -viewport.X/2,
-            viewport.Y/2,
-            0);
+        var translateTransform = Matrix4x4.CreateTranslation( -viewport.X / 2,
+                                                              viewport.Y / 2,
+                                                              0 );
 
         var mirrorYTransform = Matrix4x4.CreateScale( 1, -1, 1 );
-        
+
         var combinedTransform = mirrorYTransform * translateTransform;
 
         var transformedRect = rectangle.ApplyTransform( combinedTransform, CoordinateSystem2D.Cartesian );

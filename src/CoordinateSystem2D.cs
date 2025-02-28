@@ -1,7 +1,8 @@
 ﻿#region copyright
+
 // Copyright (c) 2021, 2022, 2023 Mark A. Olbert 
 // https://www.JumpForJoySoftware.com
-// Edge2D.cs
+// CoordinateSystem2D.cs
 //
 // This file is part of JumpForJoy Software's VisualUtilities.
 // 
@@ -17,10 +18,13 @@
 // 
 // You should have received a copy of the GNU General Public License along 
 // with VisualUtilities. If not, see <https://www.gnu.org/licenses/>.
-#endregion
 
-using System.Numerics;
+#endregion
 
 namespace J4JSoftware.VisualUtilities;
 
-public record Edge2D( Vector3 Point1, Vector3 Point2 );
+public enum CoordinateSystem2D
+{
+    Cartesian,
+    Display
+}

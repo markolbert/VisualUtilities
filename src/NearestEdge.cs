@@ -1,4 +1,5 @@
 ﻿#region copyright
+
 // Copyright (c) 2021, 2022, 2023 Mark A. Olbert 
 // https://www.JumpForJoySoftware.com
 // NearestEdge.cs
@@ -17,13 +18,14 @@
 // 
 // You should have received a copy of the GNU General Public License along 
 // with VisualUtilities. If not, see <https://www.gnu.org/licenses/>.
+
 #endregion
 
 using System;
 
 namespace J4JSoftware.VisualUtilities;
 
-[Flags]
+[ Flags ]
 public enum NearestEdge
 {
     Top = 1 << 0,
