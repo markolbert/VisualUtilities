@@ -1,6 +1,6 @@
 # J4JSoftware.VisualUtilities
 
-The change log is [available here](changes.md).
+The change log is [available here](docs/changes.md).
 
 The library repository is available on [github](https://github.com/markolbert/ProgrammingUtilities/blob/master/VisualUtilities/docs/readme.md).
 
