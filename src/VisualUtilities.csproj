@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
 		<AssemblyName>J4JSoftware.VisualUtilities</AssemblyName>
 		<RootNamespace>J4JSoftware.VisualUtilities</RootNamespace>
 		<Nullable>enable</Nullable>
@@ -10,10 +11,16 @@
 		<Product>J4JSoftware Utilities for Visual/Media Elements</Product>
 		<Description>Utilities for visual/media elements</Description>
 		<Copyright>© Mark A. Olbert all rights reserved</Copyright>
-		<RepositoryUrl>https://github.com/markolbert/ProgrammingUtilities</RepositoryUrl>
+		<Version>2.2.0.0</Version>
+		<AssemblyVersion>2.2.0.0</AssemblyVersion>
 		<RepositoryType>git</RepositoryType>
-		<Version>2.1.1.0</Version>
-		<AssemblyVersion>2.1.1.0</AssemblyVersion>
+		<RepositoryUrl>https://github.com/markolbert/VisualUtilities</RepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+		<PackageReleaseNotes>add geometric transform methods, updated to Net9</PackageReleaseNotes>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<PackageLicenseFile>license.md</PackageLicenseFile>
 	</PropertyGroup>
 
 </Project>
