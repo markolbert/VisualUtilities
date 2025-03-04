@@ -91,5 +91,5 @@ public static class GeometricExtensions
     }
 
     public static Vector3 Perpendicular( this Vector3 vector, float magnitude = 1 ) =>
-        new( magnitude, -vector.X * magnitude / vector.Y, 0 );
+        new( magnitude <= 0 ? 1 : magnitude, -vector.X * magnitude / vector.Y, 0 );
 }
